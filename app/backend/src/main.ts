@@ -9,6 +9,11 @@ async function bootstrap() {
     .setTitle('Waiting Line')
     .setDescription('The Waiting Line API description')
     .setVersion('1.0')
+    .setContact(
+      'Kadu',
+      'https://github.com/kaduh15',
+      'kadu.silva2014@gmail.com',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
