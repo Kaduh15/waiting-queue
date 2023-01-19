@@ -1,0 +1,31 @@
+{
+  "name": "waiting-line",
+  "version": "1.0.0",
+  "description": "Projeto de uma fila de espera com o intuito de aprender NestJS, Prisma ORM, e NextJS.",
+  "main": "index.js",
+  "scripts": {
+    "compose:up:dev": "docker-compose -f docker-compose.dev.yml up -d --build",
+    "compose:down:dev": "docker-compose -f docker-compose.dev.yml down --remove-orphans",
+    "compose:up": "docker-compose -f docker-compose.yml up -d --build",
+    "compose:down": "docker-compose -f docker-compose.yml down --remove-orphans",
+    "db:permission": "sudo chmod 777 -R app/backend/db",
+    "db:delete": "sudo rm -rf app/backend/db",
+    "prestart": "npm i && cd app/frontend && npm i && cd ../backend && npm i && cd ../../",
+    "start:front:dev": "cd app/frontend && npm run dev",
+    "start:back:dev": "cd app/backend && npm run dev",
+    "start:front": "cd app/frontend && npm start",
+    "start:back": "cd app/backend && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaduh15/waiting-line.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaduh15/waiting-line/issues"
+  },
+  "homepage": "https://github.com/Kaduh15/waiting-line#readme"
+}
