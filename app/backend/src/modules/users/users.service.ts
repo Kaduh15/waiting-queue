@@ -1,5 +1,9 @@
 import { User } from './entities/user.entity';
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { hashSync } from 'bcrypt';
 import { PrismaService } from '../../prisma/Prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -32,10 +36,17 @@ export class UsersService {
     return this.prisma.user.findMany();
   }
 
-  async findOne(id: number): Promise<User | undefined> {
-    return this.prisma.user.findUnique({
-      where: { id },
+  async findOne({ id, email }: { id?: number; email?: string }) {
+    const where = id ? { id } : { email };
+    const user = await this.prisma.user.findUnique({
+      where,
     });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

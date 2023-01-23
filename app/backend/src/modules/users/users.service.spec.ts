@@ -1,5 +1,5 @@
 import { User } from './entities/user.entity';
-import { ConflictException } from '@nestjs/common';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { hashSync } from 'bcrypt';
 import { PrismaService } from '../../prisma/Prisma.service';
@@ -94,6 +94,40 @@ describe('UsersService', () => {
       const users = await service.findAll();
 
       expect(users).toEqual(usersOutput);
+    });
+  });
+
+  describe('findOne', () => {
+    it('should return a user with the right id', async () => {
+      const idValid = 1;
+
+      const userOutput: User = {
+        id: idValid,
+        name: 'João da Silva',
+        email: 'joão@example,com',
+        role: 'USER',
+      };
+
+      jest
+        .spyOn(prisma.user, 'findUnique')
+        .mockImplementation(() => userOutput as any);
+
+      const user = await service.findOne({ id: idValid });
+
+      expect(user).toEqual(userOutput);
+    });
+
+    it('should throw an error if user does not exist', async () => {
+      const idInvalid = 1;
+
+      jest.spyOn(prisma.user, 'findUnique').mockImplementation(() => null);
+
+      try {
+        await service.findOne({ id: idInvalid });
+      } catch (error) {
+        expect(error).toBeInstanceOf(NotFoundException);
+        expect(error.message).toBe('User not found');
+      }
     });
   });
 });
