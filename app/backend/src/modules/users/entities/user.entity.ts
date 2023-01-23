@@ -3,7 +3,7 @@ export class User {
   email: string;
   name: string;
   password?: string;
-  role: Role;
+  role?: Role;
 }
 
 export type Role = 'ADMIN' | 'USER';
