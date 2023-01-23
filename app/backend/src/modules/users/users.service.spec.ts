@@ -71,4 +71,29 @@ describe('UsersService', () => {
       }
     });
   });
+
+  describe('findAll', () => {
+    it('should return an array of users', async () => {
+      const usersOutput: User[] = [
+        {
+          id: 1,
+          name: 'João da Silva',
+          email: 'joão@example,com',
+        },
+        {
+          id: 1,
+          name: 'Maria da Silva',
+          email: 'maria@example,com',
+        },
+      ];
+
+      jest
+        .spyOn(prisma.user, 'findMany')
+        .mockImplementation(() => usersOutput as any);
+
+      const users = await service.findAll();
+
+      expect(users).toEqual(usersOutput);
+    });
+  });
 });
