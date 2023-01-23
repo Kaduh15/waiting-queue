@@ -1,4 +1,3 @@
-import { User } from './entities/user.entity';
 import {
   ConflictException,
   Injectable,
