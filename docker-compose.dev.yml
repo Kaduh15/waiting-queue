@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./app/backend/DockerfileDev
+    container_name: backend
+    tty: true
+    stdin_open: true
+    restart: always
+    volumes:
+      - ./app/backend:/usr/app-back
+    environment:
+      - PORT=3001
+    depends_on:
+      - db
+    ports:
+      - 3001:3001
+    networks:
+      - net
+
+  db:
+    image: mysql
+    container_name: db
+    platform: linux/x86_64
+    restart: always
+    volumes:
+      - ./app/backend/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3306:3306
+      - 33060:33060
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
