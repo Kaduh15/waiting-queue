@@ -18,7 +18,7 @@ export class CreateUserDto {
 
   /*
    * Nome do usuário
-   * @example João da Silva
+   * @example João
    */
   @IsString()
   @IsNotEmpty()
