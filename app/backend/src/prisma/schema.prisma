@@ -16,13 +16,30 @@ model User {
   email    String @unique
   name     String
   password String
-
-  role Role @default(USER)
+  role     Role   @default(USER)
 
   @@map("users")
+}
+
+model WaitingLine {
+  id                String    @id @default(uuid())
+  name              String
+  createdAt         DateTime  @default(now()) @map("created_at")
+  status            Status    @default(WAITING)
+  initalServiceTime DateTime? @map("initial_service_time")
+  finishedServiceTime DateTime? @map("finished_service_time")
+
+  @@map("waiting_lines")
 }
 
 enum Role {
   ADMIN
   USER
+}
+
+enum Status {
+  WAITING
+  IN_PROGRESS
+  FINISHED
+  ABSENT
 }
