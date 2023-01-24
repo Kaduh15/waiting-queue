@@ -26,7 +26,7 @@ model WaitingLine {
   name              String
   createdAt         DateTime  @default(now()) @map("created_at")
   status            Status    @default(WAITING)
-  initalServiceTime DateTime? @map("initial_service_time")
+  initialServiceTime DateTime? @map("initial_service_time")
   finishedServiceTime DateTime? @map("finished_service_time")
 
   @@map("waiting_lines")
