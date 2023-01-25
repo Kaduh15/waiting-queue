@@ -20,7 +20,9 @@ export class WaitingLine {
   finishedServiceTime?: Date
 }
 
-export type Status = 'WAITING' 
-  | 'IN_PROGRESS' 
-  | 'FINISHED' 
-  | 'ABSENT'
+export enum Status {
+  Waiting = 'WAITING',
+  In_progress = 'IN_PROGRESS',
+  Finished = 'FINISHED',
+  Absent = 'ABSENT',
+}
