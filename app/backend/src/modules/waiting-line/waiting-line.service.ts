@@ -1,5 +1,5 @@
 import { PrismaService } from './../../prisma/Prisma.service';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { CreateWaitingLineDto } from './dto/create-waiting-line.dto';
 import { UpdateWaitingLineDto } from './dto/update-waiting-line.dto';
 
@@ -31,8 +31,32 @@ export class WaitingLineService {
   }
 
   async remove(id: string) {
-    return this.prisma.waitingLine.delete({
+    await this.prisma.waitingLine.delete({
       where: { id }
     });
+
+    return { message: 'Client removed' };
+  }
+
+  async startService(id: string) {
+    const client = await this.findOne(id);
+
+    if (!client) {
+      throw new NotFoundException('Client not found');
+    }
+
+    if (client.status !== 'WAITING') {
+      throw new NotAcceptableException('Client is not waiting');
+    }
+
+    const clientUpdated = await this.prisma.waitingLine.update({
+      where: { id },
+      data: {
+        status: 'IN_PROGRESS',
+        initialServiceTime: new Date()
+      }
+    })
+
+    return clientUpdated;
   }
 }

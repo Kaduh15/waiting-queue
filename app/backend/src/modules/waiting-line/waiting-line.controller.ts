@@ -28,6 +28,13 @@ export class WaitingLineController {
     return this.waitingLineService.findOne(id);
   }
 
+  @Patch(':id/start')
+  @UseGuards(new JwtAuthGuard())
+  @ApiBearerAuth()
+  async startService(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.waitingLineService.startService(id);
+  }
+
   @Patch(':id')
   @UseGuards(new JwtAuthGuard())
   @ApiBearerAuth()
