@@ -100,7 +100,30 @@ describe('WaitingLineService', () => {
 
       jest.spyOn(prisma.waitingLine, 'delete').mockImplementation(null);
 
-      expect(await service.remove(idValid)).toBe(null);
+      expect(await service.remove(idValid)).toEqual({ message: 'Client removed' });
+    })
+  })
+
+  describe('startService', () => {
+    it('should start a service', async () => {
+      const idValid = 'uuid'
+
+      const clientOutput: WaitingLine = {
+        id: idValid,
+        name: 'João',
+        createdAt: new Date(),
+        status: 'IN_PROGRESS',
+        initialServiceTime: new Date(),
+        finishedServiceTime: null
+      };
+
+      jest.spyOn(service, 'findOne').mockImplementation(() => ({status: 'WAITING'}) as any);
+      jest.spyOn(prisma.waitingLine, 'update').mockImplementation(() => clientOutput as any);
+
+      const result = await service.startService(idValid);
+
+      expect(result.status).toBe('IN_PROGRESS');
+      expect(result.status).toBe('IN_PROGRESS');
     })
   })
 });
