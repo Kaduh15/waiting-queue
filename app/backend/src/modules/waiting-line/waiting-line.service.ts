@@ -24,7 +24,10 @@ export class WaitingLineService {
   }
 
   async update(id: string, updateWaitingLineDto: UpdateWaitingLineDto) {
-    return `This action updates a #${id} waitingLine`;
+    return this.prisma.waitingLine.update({
+      where: { id },
+      data: updateWaitingLineDto
+    });
   }
 
   async remove(id: string) {
