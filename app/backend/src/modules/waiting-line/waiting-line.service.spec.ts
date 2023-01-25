@@ -123,7 +123,30 @@ describe('WaitingLineService', () => {
       const result = await service.startService(idValid);
 
       expect(result.status).toBe('IN_PROGRESS');
-      expect(result.status).toBe('IN_PROGRESS');
+      expect(result.initialServiceTime).not.toBe(null);
+    })
+  })
+
+  describe('finishService', () => {
+    it('should finish a service', async () => {
+      const idValid = 'uuid'
+
+      const clientOutput: WaitingLine = {
+        id: idValid,
+        name: 'João',
+        createdAt: new Date(),
+        status: 'FINISHED',
+        initialServiceTime: new Date(),
+        finishedServiceTime: new Date()
+      };
+
+      jest.spyOn(service, 'findOne').mockImplementation(() => ({status: 'IN_PROGRESS'}) as any);
+      jest.spyOn(prisma.waitingLine, 'update').mockImplementation(() => clientOutput as any);
+
+      const result = await service.finishService(idValid);
+
+      expect(result.status).toBe('FINISHED');
+      expect(result.finishedServiceTime).not.toBe(null);
     })
   })
 });
