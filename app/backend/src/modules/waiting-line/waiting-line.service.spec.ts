@@ -149,4 +149,32 @@ describe('WaitingLineService', () => {
       expect(result.finishedServiceTime).not.toBe(null);
     })
   })
+
+  describe('getClientsToday', () => {
+    it('should return an array of customers registered on the day', async () => {
+      const clientBase: WaitingLine = {
+        id: 'uuid',
+        name: 'João',
+        createdAt: new Date(),
+        status: 'WAITING',
+        initialServiceTime: null,
+        finishedServiceTime: null
+      };
+
+      const result = [clientBase,
+        {
+          ...clientBase,
+          name: 'pedro',
+        },
+        {
+          ...clientBase,
+          name: 'André',
+        },
+      ];
+
+      jest.spyOn(prisma.waitingLine, 'findMany').mockImplementation(() => result as any);
+
+      expect(await service.getClientsToday()).toBe(result);
+    })
+  })
 });
