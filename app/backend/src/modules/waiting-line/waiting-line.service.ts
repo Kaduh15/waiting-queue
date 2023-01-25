@@ -31,6 +31,8 @@ export class WaitingLineService {
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} waitingLine`;
+    return this.prisma.waitingLine.delete({
+      where: { id }
+    });
   }
 }
