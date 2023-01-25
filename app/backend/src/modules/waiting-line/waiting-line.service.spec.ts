@@ -93,4 +93,14 @@ describe('WaitingLineService', () => {
       expect(await service.update(idValid, clientOutput)).toBe(clientOutput);
     });
   })
+
+  describe('remove', () => {
+    it('should remove a client', async () => {
+      const idValid = 'uuid'
+
+      jest.spyOn(prisma.waitingLine, 'delete').mockImplementation(null);
+
+      expect(await service.remove(idValid)).toBe(null);
+    })
+  })
 });
