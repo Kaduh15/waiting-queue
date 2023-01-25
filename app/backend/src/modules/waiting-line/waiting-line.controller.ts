@@ -35,6 +35,13 @@ export class WaitingLineController {
     return this.waitingLineService.startService(id);
   }
 
+  @Patch(':id/finish')
+  @UseGuards(new JwtAuthGuard())
+  @ApiBearerAuth()
+  async finishService(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.waitingLineService.finishService(id);
+  }
+
   @Patch(':id')
   @UseGuards(new JwtAuthGuard())
   @ApiBearerAuth()

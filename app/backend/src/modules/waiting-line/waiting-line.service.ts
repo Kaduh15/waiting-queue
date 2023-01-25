@@ -59,4 +59,26 @@ export class WaitingLineService {
 
     return clientUpdated;
   }
+
+  async finishService(id: string) {
+    const client = await this.findOne(id);
+
+    if (!client) {
+      throw new NotFoundException('Client not found');
+    }
+
+    if (client.status !== 'IN_PROGRESS') {
+      throw new NotAcceptableException('Client is not in service');
+    }
+
+    const clientUpdated = await this.prisma.waitingLine.update({
+      where: { id },
+      data: {
+        status: 'FINISHED',
+        finishedServiceTime: new Date()
+      }
+    })
+
+    return clientUpdated;
+  }
 }
