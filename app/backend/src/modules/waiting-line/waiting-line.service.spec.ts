@@ -2,7 +2,7 @@ import { CreateWaitingLineDto } from './dto/create-waiting-line.dto';
 import { PrismaService } from './../../prisma/Prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { WaitingLineService } from './waiting-line.service';
-import { WaitingLine } from './entities/waiting-line.entity';
+import { Status, WaitingLine } from './entities/waiting-line.entity';
 
 describe('WaitingLineService', () => {
   let service: WaitingLineService;
@@ -33,7 +33,7 @@ describe('WaitingLineService', () => {
         id: 'uuid',
         name,
         createdAt: new Date(),
-        status: 'WAITING',
+        status: Status.Waiting,
         initialServiceTime: null,
         finishedServiceTime: null
       }
@@ -64,7 +64,7 @@ describe('WaitingLineService', () => {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
-        status: 'WAITING',
+        status: Status.Waiting,
         initialServiceTime: null,
         finishedServiceTime: null
       };
@@ -83,7 +83,7 @@ describe('WaitingLineService', () => {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
-        status: 'IN_PROGRESS',
+        status: Status.In_progress,
         initialServiceTime: new Date(),
         finishedServiceTime: null
       };
@@ -112,7 +112,7 @@ describe('WaitingLineService', () => {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
-        status: 'IN_PROGRESS',
+        status: Status.In_progress,
         initialServiceTime: new Date(),
         finishedServiceTime: null
       };
@@ -135,7 +135,7 @@ describe('WaitingLineService', () => {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
-        status: 'FINISHED',
+        status: Status.Finished,
         initialServiceTime: new Date(),
         finishedServiceTime: new Date()
       };
@@ -156,7 +156,7 @@ describe('WaitingLineService', () => {
         id: 'uuid',
         name: 'João',
         createdAt: new Date(),
-        status: 'WAITING',
+        status: Status.Waiting,
         initialServiceTime: null,
         finishedServiceTime: null
       };

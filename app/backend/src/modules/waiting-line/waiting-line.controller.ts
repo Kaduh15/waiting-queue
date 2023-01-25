@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseUUID
 import { WaitingLineService } from './waiting-line.service';
 import { CreateWaitingLineDto } from './dto/create-waiting-line.dto';
 import { UpdateWaitingLineDto } from './dto/update-waiting-line.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
+import { WaitingLine } from './entities/waiting-line.entity';
 
 @ApiTags('Waiting Line')
 @Controller('waiting-line')
@@ -36,6 +37,7 @@ export class WaitingLineController {
   @Patch(':id/start')
   @UseGuards(new JwtAuthGuard())
   @ApiBearerAuth()
+  @ApiResponse({ status: 200, description: 'Client started service' , type: WaitingLine })
   async startService(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.waitingLineService.startService(id);
   }

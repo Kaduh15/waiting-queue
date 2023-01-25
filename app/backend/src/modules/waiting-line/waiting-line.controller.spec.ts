@@ -1,3 +1,4 @@
+import { PrismaService } from './../../prisma/Prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { WaitingLineController } from './waiting-line.controller';
 import { WaitingLineService } from './waiting-line.service';
@@ -8,7 +9,7 @@ describe('WaitingLineController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [WaitingLineController],
-      providers: [WaitingLineService],
+      providers: [PrismaService, WaitingLineService],
     }).compile();
 
     controller = module.get<WaitingLineController>(WaitingLineController);
