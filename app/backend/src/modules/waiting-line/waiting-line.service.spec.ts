@@ -45,4 +45,14 @@ describe('WaitingLineService', () => {
       expect(waitingLine).toEqual(clientOutput);
     });
   })
+
+  describe('findAll', () => {
+    it('should return an array of waiting lines', async () => {
+      const result = ['test'];
+
+      jest.spyOn(prisma.waitingLine, 'findMany').mockImplementation(() => result as any);
+
+      expect(await service.findAll()).toBe(result);
+    });
+  })
 });
