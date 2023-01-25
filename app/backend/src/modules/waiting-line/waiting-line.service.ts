@@ -1,11 +1,16 @@
+import { PrismaService } from './../../prisma/Prisma.service';
 import { Injectable } from '@nestjs/common';
 import { CreateWaitingLineDto } from './dto/create-waiting-line.dto';
 import { UpdateWaitingLineDto } from './dto/update-waiting-line.dto';
 
 @Injectable()
 export class WaitingLineService {
+  constructor(private readonly prisma: PrismaService) {}
+
   async create(createWaitingLineDto: CreateWaitingLineDto) {
-    return 'This action adds a new waitingLine';
+    return this.prisma.waitingLine.create({
+      data: createWaitingLineDto
+    });
   }
 
   async findAll() {
