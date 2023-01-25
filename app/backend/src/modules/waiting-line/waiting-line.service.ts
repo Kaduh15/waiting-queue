@@ -14,18 +14,18 @@ export class WaitingLineService {
   }
 
   async findAll() {
-    return `This action returns all waitingLine`;
+    return this.prisma.waitingLine.findMany();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return `This action returns a #${id} waitingLine`;
   }
 
-  async update(id: number, updateWaitingLineDto: UpdateWaitingLineDto) {
+  async update(id: string, updateWaitingLineDto: UpdateWaitingLineDto) {
     return `This action updates a #${id} waitingLine`;
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     return `This action removes a #${id} waitingLine`;
   }
 }

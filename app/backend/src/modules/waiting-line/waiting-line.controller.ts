@@ -25,20 +25,20 @@ export class WaitingLineController {
 
   @Get(':id')
   async findOne(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.waitingLineService.findOne(+id);
+    return this.waitingLineService.findOne(id);
   }
 
   @Patch(':id')
   @UseGuards(new JwtAuthGuard())
   @ApiBearerAuth()
   async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() updateWaitingLineDto: UpdateWaitingLineDto) {
-    return this.waitingLineService.update(+id, updateWaitingLineDto);
+    return this.waitingLineService.update(id, updateWaitingLineDto);
   }
 
   @Delete(':id')
   @UseGuards(new JwtAuthGuard())
   @ApiBearerAuth()
   async remove(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.waitingLineService.remove(+id);
+    return this.waitingLineService.remove(id);
   }
 }

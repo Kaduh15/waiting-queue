@@ -47,12 +47,31 @@ describe('WaitingLineService', () => {
   })
 
   describe('findAll', () => {
-    it('should return an array of waiting lines', async () => {
+    it('should return an array of clients', async () => {
       const result = ['test'];
 
       jest.spyOn(prisma.waitingLine, 'findMany').mockImplementation(() => result as any);
 
       expect(await service.findAll()).toBe(result);
+    });
+  })
+
+  describe('findOne', () => {
+    it('should return a client', async () => {
+      const idValid = 'uuid'
+
+      const clientOutput: WaitingLine = {
+        id: idValid,
+        name: 'João',
+        createdAt: new Date(),
+        status: 'WAITING',
+        initialServiceTime: null,
+        finishedServiceTime: null
+      };
+
+      jest.spyOn(prisma.waitingLine, 'findUnique').mockImplementation(() => clientOutput as any);
+
+      expect(await service.findOne('1')).toBe(clientOutput);
     });
   })
 });
