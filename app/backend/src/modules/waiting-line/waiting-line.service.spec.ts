@@ -74,4 +74,23 @@ describe('WaitingLineService', () => {
       expect(await service.findOne('1')).toBe(clientOutput);
     });
   })
+
+  describe('update', () => {
+    it('should update a client', async () => {
+      const idValid = 'uuid'
+
+      const clientOutput: WaitingLine = {
+        id: idValid,
+        name: 'João',
+        createdAt: new Date(),
+        status: 'IN_PROGRESS',
+        initialServiceTime: new Date(),
+        finishedServiceTime: null
+      };
+
+      jest.spyOn(prisma.waitingLine, 'update').mockImplementation(() => clientOutput as any);
+
+      expect(await service.update(idValid, clientOutput)).toBe(clientOutput);
+    });
+  })
 });
