@@ -81,4 +81,22 @@ export class WaitingLineService {
 
     return clientUpdated;
   }
+
+  async getClientsToday() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+
+    return this.prisma.waitingLine.findMany({
+      where: {
+        createdAt: {
+          gte: today,
+          lt: tomorrow 
+        }
+      }
+    })
+  }
 }

@@ -23,6 +23,11 @@ export class WaitingLineController {
     return this.waitingLineService.findAll();
   }
 
+  @Get('today')
+  async getClientsToday() {
+    return this.waitingLineService.getClientsToday();
+  }
+
   @Get(':id')
   async findOne(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.waitingLineService.findOne(id);
