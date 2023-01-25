@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only --dockerfile ./app/backend/Dockerfile
+      - run: flyctl deploy --remote-only --config ./app/backend/fly.toml --dockerfile ./app/backend/Dockerfile
     
