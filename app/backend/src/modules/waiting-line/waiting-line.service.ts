@@ -18,7 +18,9 @@ export class WaitingLineService {
   }
 
   async findOne(id: string) {
-    return `This action returns a #${id} waitingLine`;
+    return this.prisma.waitingLine.findUnique({
+      where: { id }
+    });
   }
 
   async update(id: string, updateWaitingLineDto: UpdateWaitingLineDto) {
