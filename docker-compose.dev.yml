@@ -17,6 +17,7 @@ services:
       - db
     ports:
       - 3001:3001
+      - 5555:5555
     networks:
       - net
 
