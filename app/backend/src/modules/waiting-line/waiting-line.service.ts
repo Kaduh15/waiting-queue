@@ -1,5 +1,9 @@
 import { PrismaService } from './../../prisma/Prisma.service';
-import { Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotAcceptableException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateWaitingLineDto } from './dto/create-waiting-line.dto';
 import { UpdateWaitingLineDto } from './dto/update-waiting-line.dto';
 
@@ -9,7 +13,7 @@ export class WaitingLineService {
 
   async create(createWaitingLineDto: CreateWaitingLineDto) {
     return this.prisma.waitingLine.create({
-      data: createWaitingLineDto
+      data: createWaitingLineDto,
     });
   }
 
@@ -19,20 +23,20 @@ export class WaitingLineService {
 
   async findOne(id: string) {
     return this.prisma.waitingLine.findUnique({
-      where: { id }
+      where: { id },
     });
   }
 
   async update(id: string, updateWaitingLineDto: UpdateWaitingLineDto) {
     return this.prisma.waitingLine.update({
       where: { id },
-      data: updateWaitingLineDto
+      data: updateWaitingLineDto,
     });
   }
 
   async remove(id: string) {
     await this.prisma.waitingLine.delete({
-      where: { id }
+      where: { id },
     });
 
     return { message: 'Client removed' };
@@ -53,9 +57,9 @@ export class WaitingLineService {
       where: { id },
       data: {
         status: 'IN_PROGRESS',
-        initialServiceTime: new Date()
-      }
-    })
+        initialServiceTime: new Date(),
+      },
+    });
 
     return clientUpdated;
   }
@@ -75,9 +79,9 @@ export class WaitingLineService {
       where: { id },
       data: {
         status: 'FINISHED',
-        finishedServiceTime: new Date()
-      }
-    })
+        finishedServiceTime: new Date(),
+      },
+    });
 
     return clientUpdated;
   }
@@ -94,9 +98,9 @@ export class WaitingLineService {
       where: {
         createdAt: {
           gte: today,
-          lt: tomorrow 
-        }
-      }
-    })
+          lt: tomorrow,
+        },
+      },
+    });
   }
 }

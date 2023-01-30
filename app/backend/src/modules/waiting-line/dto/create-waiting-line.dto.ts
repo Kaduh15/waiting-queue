@@ -1,10 +1,10 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateWaitingLineDto {
   @ApiProperty({
-    description: "Nome do cliente",
-    example: "Pedro da Silva",
+    description: 'Nome do cliente',
+    example: 'Pedro da Silva',
   })
   @IsString()
   @IsNotEmpty()

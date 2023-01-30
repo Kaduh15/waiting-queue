@@ -1,4 +1,4 @@
-import { IsDate, IsString, IsUUID } from "class-validator";
+import { IsDate, IsString, IsUUID } from 'class-validator';
 
 export class WaitingLine {
   @IsUUID()
@@ -9,15 +9,15 @@ export class WaitingLine {
 
   @IsDate()
   createdAt: Date;
-  
+
   @IsString()
   status: Status;
 
   @IsDate()
-  initialServiceTime?: Date
-  
+  initialServiceTime?: Date;
+
   @IsDate()
-  finishedServiceTime?: Date
+  finishedServiceTime?: Date;
 }
 
 export enum Status {

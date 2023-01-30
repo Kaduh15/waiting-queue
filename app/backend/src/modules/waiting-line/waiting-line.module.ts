@@ -5,6 +5,6 @@ import { WaitingLineController } from './waiting-line.controller';
 
 @Module({
   controllers: [WaitingLineController],
-  providers: [PrismaService, WaitingLineService]
+  providers: [PrismaService, WaitingLineService],
 })
 export class WaitingLineModule {}

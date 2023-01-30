@@ -5,9 +5,9 @@ import { CreateWaitingLineDto } from './create-waiting-line.dto';
 
 export class UpdateWaitingLineDto extends PartialType(CreateWaitingLineDto) {
   /*
-    * Nome do Cliente
-    * @example Pedro da Silva
-  */
+   * Nome do Cliente
+   * @example Pedro da Silva
+   */
   @IsString()
   name: string;
 
@@ -21,16 +21,16 @@ export class UpdateWaitingLineDto extends PartialType(CreateWaitingLineDto) {
   status: Status;
 
   /*
-    * Data de inicio do atendimento
-    * @example '2021-01-01T00:00:00.000Z'
-  */
+   * Data de inicio do atendimento
+   * @example '2021-01-01T00:00:00.000Z'
+   */
   @IsDate()
-  initialServiceTime?: Date
+  initialServiceTime?: Date;
 
   /*
-    * Data de fim do atendimento
-    * @example 2021-01-01T00:00:00.000Z
-  */
+   * Data de fim do atendimento
+   * @example 2021-01-01T00:00:00.000Z
+   */
   @IsDate()
-  finishedServiceTime?: Date
+  finishedServiceTime?: Date;
 }

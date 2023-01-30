@@ -8,7 +8,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Waiting Line')
-    .setDescription(`API para um sistema de fila de espera para uma barbearia, onde os clientes podem se cadastrar e acompanhar sua posição na fila.`)
+    .setDescription(
+      `API para um sistema de fila de espera para uma barbearia, onde os clientes podem se cadastrar e acompanhar sua posição na fila.`,
+    )
     .setVersion('1.0')
     .setContact(
       'Kadu',
