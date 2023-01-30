@@ -3,10 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { WaitingLineModule } from './modules/waiting-line/waiting-line.module';
+import { WaitingQueueModule } from './modules/waiting-queue/waiting-queue.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, WaitingLineModule],
+  imports: [UsersModule, AuthModule, WaitingQueueModule],
   controllers: [AppController],
   providers: [AppService],
 })
