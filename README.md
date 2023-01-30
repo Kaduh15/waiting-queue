@@ -21,16 +21,16 @@
 
   <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/kaduh15/waiting-queue?color=56BEB8" /> -->
 
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/kaduh15/waiting-queue?color=56BEB8" /> -->
+  <img alt="Github stars" src="https://img.shields.io/github/stars/kaduh15/waiting-queue?color=56BEB8" />
 </p>
 
 <!-- Status -->
 
-<!-- <h4 align="center"> 
+<h4 align="center"> 
 	🚧  Waiting Queue 🚀 Under construction...  🚧
 </h4> 
 
-<hr> -->
+<hr>
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
@@ -44,9 +44,13 @@
 
 <br>
 
-## :dart: About ##
+## :dart: Sobre ##
 
-Describe your project
+Uma fila online onde os cliente pode ver quando serão atendido sem precisar permanecer no estabelecimento.
+
+O projeto tem o objetivo de resolver um problema real que um amigo estava tendo, ele é barbeiro e os clientes geralmente marcavam a hora e saiam e por ter muitos clientes alguns acabavam se perdendo na hora chegando cedo e outros tarde demais. E foi aí que eu me propus de fazer um sito onde ele pudesse controlar melhor a fila de clientes e também para que eles vejam o quanto falta para a vez de cada um.
+
+E também para aprender novas tecnologias como o Prisma ORM, NestJS e NextJS o quais ainda não tinha conhecimento.
 
 ## :sparkles: Features ##
 
@@ -79,7 +83,7 @@ $ cd waiting-queue
 # Install dependencies
 $ npm rum compose:up # use o 'npm run compose:down' para parar o container
 
-# O servidor backend será inicializado em <http://localhost:3001>
+# O servidor backend será inicializado em <http://localhost:3001/docs>
 ```
 
 ## :memo: License ##
