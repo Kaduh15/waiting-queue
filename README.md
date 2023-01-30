@@ -66,8 +66,9 @@ As seguintes ferramentas foram usadas neste projeto:
 
 Antes de Iniciar :checkered_flag:, você precisa ter [Git](https://git-scm.com), [Node](https://nodejs.org/en/) ou [Docker](https://www.docker.com/)  Instalado.
 
-## :checkered_flag: Starting ##
+## :checkered_flag: Iniciando ##
 
+#Com Docker 🐋
 ```bash
 # Clone this project
 $ git clone https://github.com/kaduh15/waiting-queue
@@ -76,12 +77,9 @@ $ git clone https://github.com/kaduh15/waiting-queue
 $ cd waiting-queue
 
 # Install dependencies
-$ yarn
+$ npm rum compose:up # use o 'npm run compose:down' para parar o container
 
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
+# O servidor backend será inicializado em <http://localhost:3001>
 ```
 
 ## :memo: License ##
@@ -89,7 +87,7 @@ $ yarn start
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/kaduh15" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/kaduh15" target="_blank">Kaduh15</a>
 
 &#xa0;
 
