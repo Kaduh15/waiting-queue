@@ -53,9 +53,9 @@ export class WaitingQueueService {
       where: { id },
       data: {
         status: 'IN_PROGRESS',
-        initialServiceTime: new Date()
-      }
-    })
+        initialServiceTime: new Date(),
+      },
+    });
 
     return clientUpdated;
   }
@@ -75,9 +75,9 @@ export class WaitingQueueService {
       where: { id },
       data: {
         status: 'FINISHED',
-        finishedServiceTime: new Date()
-      }
-    })
+        finishedServiceTime: new Date(),
+      },
+    });
 
     return clientUpdated;
   }
@@ -94,9 +94,9 @@ export class WaitingQueueService {
       where: {
         createdAt: {
           gte: today,
-          lt: tomorrow 
-        }
-      }
-    })
+          lt: tomorrow,
+        },
+      },
+    });
   }
 }
