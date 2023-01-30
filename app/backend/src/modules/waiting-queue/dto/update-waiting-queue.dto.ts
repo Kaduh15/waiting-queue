@@ -1,9 +1,9 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsDate, IsEnum, IsString, IS_ALPHA } from 'class-validator';
-import { Status } from '../entities/waiting-line.entity';
-import { CreateWaitingLineDto } from './create-waiting-line.dto';
+import { Status } from '../entities/waiting-queue.entity';
+import { CreateWaitingQueueDto } from './create-waiting-queue.dto';
 
-export class UpdateWaitingLineDto extends PartialType(CreateWaitingLineDto) {
+export class UpdateWaitingQueueDto extends PartialType(CreateWaitingQueueDto) {
   /*
     * Nome do Cliente
     * @example Pedro da Silva

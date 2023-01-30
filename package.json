@@ -1,5 +1,5 @@
 {
-  "name": "waiting-line",
+  "name": "waiting-queue",
   "version": "1.0.0",
   "description": "Projeto de uma fila de espera com o intuito de aprender NestJS, Prisma ORM, e NextJS.",
   "main": "index.js",
@@ -19,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kaduh15/waiting-line.git"
+    "url": "git+https://github.com/Kaduh15/waiting-queue.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kaduh15/waiting-line/issues"
+    "url": "https://github.com/Kaduh15/waiting-queue/issues"
   },
-  "homepage": "https://github.com/Kaduh15/waiting-line#readme"
+  "homepage": "https://github.com/Kaduh15/waiting-queue#readme"
 }
