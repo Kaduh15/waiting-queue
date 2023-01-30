@@ -1,19 +1,23 @@
-import { CreateWaitingLineDto } from './dto/create-waiting-line.dto';
-import { PrismaService } from './../../prisma/Prisma.service';
+import { CreateWaitingQueueDto } from './dto/create-waiting-queue.dto';
+import { PrismaService } from '../../prisma/Prisma.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { WaitingLineService } from './waiting-line.service';
-import { Status, WaitingLine } from './entities/waiting-line.entity';
+import { WaitingQueueService } from './waiting-queue.service';
+import { Status, WaitingQueue } from './entities/waiting-queue.entity';
 
-describe('WaitingLineService', () => {
-  let service: WaitingLineService;
+describe('WaitingQueueService', () => {
+  let service: WaitingQueueService;
   let prisma: PrismaService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
       providers: [PrismaService, WaitingLineService],
+=======
+      providers: [PrismaService,WaitingQueueService],
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
     }).compile();
 
-    service = module.get<WaitingLineService>(WaitingLineService);
+    service = module.get<WaitingQueueService>(WaitingQueueService);
     prisma = module.get<PrismaService>(PrismaService);
   });
 
@@ -22,14 +26,22 @@ describe('WaitingLineService', () => {
   });
 
   describe('create', () => {
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
     it('should create a waiting line', async () => {
       const name = 'Test';
 
       const clientInput: CreateWaitingLineDto = {
         name,
+=======
+    it('should create a Waiting Queue', async () => {
+      const name = 'Test'
+
+      const clientInput: CreateWaitingQueueDto = {
+        name
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
       };
 
-      const clientOutput: WaitingLine = {
+      const clientOutput: WaitingQueue = {
         id: 'uuid',
         name,
         createdAt: new Date(),
@@ -38,13 +50,11 @@ describe('WaitingLineService', () => {
         finishedServiceTime: null,
       };
 
-      jest
-        .spyOn(prisma.waitingLine, 'create')
-        .mockImplementation(() => clientOutput as any);
+      jest.spyOn(prisma.waitingQueue, 'create').mockImplementation(() => clientOutput as any)
 
-      const waitingLine = await service.create(clientInput);
+      const WaitingQueue = await service.create(clientInput);
 
-      expect(waitingLine).toEqual(clientOutput);
+      expect(WaitingQueue).toEqual(clientOutput);
     });
   });
 
@@ -52,9 +62,13 @@ describe('WaitingLineService', () => {
     it('should return an array of clients', async () => {
       const result = ['test'];
 
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
       jest
         .spyOn(prisma.waitingLine, 'findMany')
         .mockImplementation(() => result as any);
+=======
+      jest.spyOn(prisma.waitingQueue, 'findMany').mockImplementation(() => result as any);
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
 
       expect(await service.findAll()).toBe(result);
     });
@@ -64,7 +78,7 @@ describe('WaitingLineService', () => {
     it('should return a client', async () => {
       const idValid = 'uuid';
 
-      const clientOutput: WaitingLine = {
+      const clientOutput: WaitingQueue = {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
@@ -73,9 +87,13 @@ describe('WaitingLineService', () => {
         finishedServiceTime: null,
       };
 
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
       jest
         .spyOn(prisma.waitingLine, 'findUnique')
         .mockImplementation(() => clientOutput as any);
+=======
+      jest.spyOn(prisma.waitingQueue, 'findUnique').mockImplementation(() => clientOutput as any);
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
 
       expect(await service.findOne('1')).toBe(clientOutput);
     });
@@ -85,7 +103,7 @@ describe('WaitingLineService', () => {
     it('should update a client', async () => {
       const idValid = 'uuid';
 
-      const clientOutput: WaitingLine = {
+      const clientOutput: WaitingQueue = {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
@@ -94,9 +112,13 @@ describe('WaitingLineService', () => {
         finishedServiceTime: null,
       };
 
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
       jest
         .spyOn(prisma.waitingLine, 'update')
         .mockImplementation(() => clientOutput as any);
+=======
+      jest.spyOn(prisma.waitingQueue, 'update').mockImplementation(() => clientOutput as any);
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
 
       expect(await service.update(idValid, clientOutput)).toBe(clientOutput);
     });
@@ -106,7 +128,7 @@ describe('WaitingLineService', () => {
     it('should remove a client', async () => {
       const idValid = 'uuid';
 
-      jest.spyOn(prisma.waitingLine, 'delete').mockImplementation(null);
+      jest.spyOn(prisma.waitingQueue, 'delete').mockImplementation(null);
 
       expect(await service.remove(idValid)).toEqual({
         message: 'Client removed',
@@ -118,7 +140,7 @@ describe('WaitingLineService', () => {
     it('should start a service', async () => {
       const idValid = 'uuid';
 
-      const clientOutput: WaitingLine = {
+      const clientOutput: WaitingQueue = {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
@@ -127,12 +149,17 @@ describe('WaitingLineService', () => {
         finishedServiceTime: null,
       };
 
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
       jest
         .spyOn(service, 'findOne')
         .mockImplementation(() => ({ status: 'WAITING' } as any));
       jest
         .spyOn(prisma.waitingLine, 'update')
         .mockImplementation(() => clientOutput as any);
+=======
+      jest.spyOn(service, 'findOne').mockImplementation(() => ({status: 'WAITING'}) as any);
+      jest.spyOn(prisma.waitingQueue, 'update').mockImplementation(() => clientOutput as any);
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
 
       const result = await service.startService(idValid);
 
@@ -145,7 +172,7 @@ describe('WaitingLineService', () => {
     it('should finish a service', async () => {
       const idValid = 'uuid';
 
-      const clientOutput: WaitingLine = {
+      const clientOutput: WaitingQueue = {
         id: idValid,
         name: 'João',
         createdAt: new Date(),
@@ -154,12 +181,17 @@ describe('WaitingLineService', () => {
         finishedServiceTime: new Date(),
       };
 
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
       jest
         .spyOn(service, 'findOne')
         .mockImplementation(() => ({ status: 'IN_PROGRESS' } as any));
       jest
         .spyOn(prisma.waitingLine, 'update')
         .mockImplementation(() => clientOutput as any);
+=======
+      jest.spyOn(service, 'findOne').mockImplementation(() => ({status: 'IN_PROGRESS'}) as any);
+      jest.spyOn(prisma.waitingQueue, 'update').mockImplementation(() => clientOutput as any);
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
 
       const result = await service.finishService(idValid);
 
@@ -170,7 +202,7 @@ describe('WaitingLineService', () => {
 
   describe('getClientsToday', () => {
     it('should return an array of customers registered on the day', async () => {
-      const clientBase: WaitingLine = {
+      const clientBase: WaitingQueue = {
         id: 'uuid',
         name: 'João',
         createdAt: new Date(),
@@ -191,9 +223,13 @@ describe('WaitingLineService', () => {
         },
       ];
 
+<<<<<<< HEAD:app/backend/src/modules/waiting-line/waiting-line.service.spec.ts
       jest
         .spyOn(prisma.waitingLine, 'findMany')
         .mockImplementation(() => result as any);
+=======
+      jest.spyOn(prisma.waitingQueue, 'findMany').mockImplementation(() => result as any);
+>>>>>>> main:app/backend/src/modules/waiting-queue/waiting-queue.service.spec.ts
 
       expect(await service.getClientsToday()).toBe(result);
     });

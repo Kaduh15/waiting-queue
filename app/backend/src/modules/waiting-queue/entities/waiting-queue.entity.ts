@@ -1,6 +1,6 @@
 import { IsDate, IsString, IsUUID } from 'class-validator';
 
-export class WaitingLine {
+export class WaitingQueue {
   @IsUUID()
   id?: string;
 

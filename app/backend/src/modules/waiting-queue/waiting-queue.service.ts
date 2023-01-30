@@ -1,42 +1,38 @@
-import { PrismaService } from './../../prisma/Prisma.service';
-import {
-  Injectable,
-  NotAcceptableException,
-  NotFoundException,
-} from '@nestjs/common';
-import { CreateWaitingLineDto } from './dto/create-waiting-line.dto';
-import { UpdateWaitingLineDto } from './dto/update-waiting-line.dto';
+import { PrismaService } from '../../prisma/Prisma.service';
+import { Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
+import { CreateWaitingQueueDto } from './dto/create-waiting-queue.dto';
+import { UpdateWaitingQueueDto } from './dto/update-waiting-queue.dto';
 
 @Injectable()
-export class WaitingLineService {
+export class WaitingQueueService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createWaitingLineDto: CreateWaitingLineDto) {
-    return this.prisma.waitingLine.create({
-      data: createWaitingLineDto,
+  async create(createWaitingQueueDto: CreateWaitingQueueDto) {
+    return this.prisma.waitingQueue.create({
+      data: createWaitingQueueDto
     });
   }
 
   async findAll() {
-    return this.prisma.waitingLine.findMany();
+    return this.prisma.waitingQueue.findMany();
   }
 
   async findOne(id: string) {
-    return this.prisma.waitingLine.findUnique({
-      where: { id },
+    return this.prisma.waitingQueue.findUnique({
+      where: { id }
     });
   }
 
-  async update(id: string, updateWaitingLineDto: UpdateWaitingLineDto) {
-    return this.prisma.waitingLine.update({
+  async update(id: string, updateWaitingQueueDto: UpdateWaitingQueueDto) {
+    return this.prisma.waitingQueue.update({
       where: { id },
-      data: updateWaitingLineDto,
+      data: updateWaitingQueueDto
     });
   }
 
   async remove(id: string) {
-    await this.prisma.waitingLine.delete({
-      where: { id },
+    await this.prisma.waitingQueue.delete({
+      where: { id }
     });
 
     return { message: 'Client removed' };
@@ -53,7 +49,7 @@ export class WaitingLineService {
       throw new NotAcceptableException('Client is not waiting');
     }
 
-    const clientUpdated = await this.prisma.waitingLine.update({
+    const clientUpdated = await this.prisma.waitingQueue.update({
       where: { id },
       data: {
         status: 'IN_PROGRESS',
@@ -75,7 +71,7 @@ export class WaitingLineService {
       throw new NotAcceptableException('Client is not in service');
     }
 
-    const clientUpdated = await this.prisma.waitingLine.update({
+    const clientUpdated = await this.prisma.waitingQueue.update({
       where: { id },
       data: {
         status: 'FINISHED',
@@ -94,7 +90,7 @@ export class WaitingLineService {
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow.setHours(0, 0, 0, 0);
 
-    return this.prisma.waitingLine.findMany({
+    return this.prisma.waitingQueue.findMany({
       where: {
         createdAt: {
           gte: today,
