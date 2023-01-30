@@ -11,7 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Waiting Line')
+    .setTitle('Waiting Queue')
     .setDescription(`API para um sistema de fila de espera para uma barbearia, onde os clientes podem se cadastrar e acompanhar sua posição na fila.`)
     .setVersion('1.0')
     .setContact(
@@ -21,7 +21,7 @@ async function bootstrap() {
     )
     .addTag('Users')
     .addTag('Auth')
-    .addTag('Waiting Line')
+    .addTag('')
     .addBearerAuth()
     .setLicense('MIT', 'https://opensource.org/licenses/MIT')
     .build();
