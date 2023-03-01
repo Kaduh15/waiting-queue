@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: ./app/backend/Dockerfile.Dev
+      dockerfile: ./app/backend/Dockerfile
     container_name: backend
     tty: true
     stdin_open: true
@@ -13,6 +13,8 @@ services:
       - ./app/backend:/usr/app-back
     environment:
       - PORT=3001
+      - DATABASE_URL=postgresql://postgres:changeme@db:5432/postgres
+      - JWT_SECRET_KEY=secret_test_key
     depends_on:
       - db
     ports:
