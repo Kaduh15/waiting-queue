@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint src --max-warnings=0"
   },
   "dependencies": {
     "@types/node": "18.14.2",
